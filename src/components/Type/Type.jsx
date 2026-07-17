@@ -4,32 +4,29 @@ import Result from "../Result/Result";
 import getSentence from "../../wordDB/wordDB";
 import "./Type.css"
 
-    const NUM_WORDS_TO_SHOW = 10;
-    const TIMER_DURATION = 30; //seconds
-    const SECOND = 1000;
+const NUM_WORDS_TO_SHOW = 10;
+const TIMER_DURATION = 30; //seconds
+const SECOND = 1000;
 
-    const UNTYPED   = "#646669";
-    const CORRECT   = "#82FF62";
-    const INCORRECT = "#CA4754";
+const UNTYPED   = "#646669";
+const CORRECT   = "#82FF62";
+const INCORRECT = "#CA4754";
 
-    export default function Type () {
-        const [words, setWords] = useState(() => getSentence().split(" "));
-        const [currWordIdx, setCurrWordIdx] = useState(0); //The current word index from words the user is typing
-        const [currWord, setCurrWord] = useState(words[currWordIdx]);//The current word from words the user is typing
-        const [typed, setTyped] = useState("");//What the user is tying in real time
-        const [typeHistory, setTypeHistory] = useState([]);
-        const [currWordGroup10, setCurrWordGroup10] = useState(words.slice(0, NUM_WORDS_TO_SHOW));
-        const [duration, setDuration] = useState(TIMER_DURATION);
-        const [timer, setTimer] = useState(TIMER_DURATION);
-        const [testStarted, setTestStarted] = useState(null);
-        const [history, setHistory] = useState({ correct: [], incorrect: [] });
-        const [focus, setFocus] = useState(true);
-        const inputRef = useRef(null);
+export default function Type () {
+    const [words, setWords] = useState(() => getSentence().split(" "));
+    const [currWordIdx, setCurrWordIdx] = useState(0); //The current word index from words the user is typing
+    const [currWord, setCurrWord] = useState(words[currWordIdx]);//The current word from words the user is typing
+    const [typed, setTyped] = useState("");//What the user is tying in real time
+    const [typeHistory, setTypeHistory] = useState([]);
+    const [currWordGroup10, setCurrWordGroup10] = useState(words.slice(0, NUM_WORDS_TO_SHOW));
+    const [duration, setDuration] = useState(TIMER_DURATION);
+    const [timer, setTimer] = useState(TIMER_DURATION);
+    const [testStarted, setTestStarted] = useState(null);
+    const [history, setHistory] = useState({ correct: [], incorrect: [] });
+    const [focus, setFocus] = useState(true);
+    const inputRef = useRef(null);
         
-        const chars = [];
-
-    console.log("teststarted ccccc: ", testStarted)
-    console.log(`New render ++++, currWordIdx: ${currWordIdx}, currWord: ${currWord}, typeHistory: ${typeHistory}`);
+    const chars = [];
 
     useEffect(() => {
         inputRef.current.focus();
@@ -42,12 +39,10 @@ import "./Type.css"
             setTimer(prev => {
                 if (prev <= 1) {
                     clearInterval(interval);
-                    console.log(`test timer 0: ${prev}`);
                     setCurrWordGroup10([]);
                     setTestStarted(false);
                     return 0;
                 }
-                console.log(`test timer: ${prev-1}`)
                 return prev - 1;
             })
         }, SECOND);
@@ -59,13 +54,9 @@ import "./Type.css"
     currWordGroup10.forEach((word, wordIdx) => {
         const letters = word.split("");
         letters.forEach((letter, letterIdx) => {
-            if (word === currWord && letterIdx === typed.length) {
-                chars.push(<span key="caret" className="caret">|</span>);
-            }
             let letterColor = UNTYPED;
             if (word === currWord) {
                 if (letterIdx < typed.length) {
-                    console.log(`typed: ${typed} -- letterIdx: ${letterIdx} -- typed.length: ${typed.length}`);
                     letterColor = typed[letterIdx] === letter ? CORRECT : INCORRECT;
                 }
             } 
@@ -84,11 +75,6 @@ import "./Type.css"
                 </span>
             );
         });
-
-        // after the letters loop, if typed is at end of word
-        if (word === currWord && typed.length >= letters.length) {
-            chars.push(<span key="caret" className="caret">|</span>);
-        }
 
         //Come here only when the user has typed sth
         //and the word length typed whether correct/incorrect
@@ -144,7 +130,6 @@ import "./Type.css"
 
     return (
         <div className="page">
-            {console.log("++++++++ teststarted: ", testStarted)}
             <div className={`header ${testStarted === false ? "hide" : ""}`}>
                 <p className="timeRemaining">{timer}</p>
                 <div className="btnContainer">
@@ -184,24 +169,21 @@ import "./Type.css"
                             if (e.key === " ") {
                                 e.preventDefault();
                                 const nextWordIdx = currWordIdx + 1;
-                                console.log(`last typed word: ${typed}, word idx: ${currWordIdx}`);
                                 setCurrWordGroup10(words.slice(nextWordIdx, nextWordIdx+NUM_WORDS_TO_SHOW));
                                 setCurrWordIdx(nextWordIdx);
                                 setCurrWord(words[nextWordIdx]);
                                 setTypeHistory(prev => [...prev, typed]);
                                 if (typed === words[currWordIdx]) {
-                                    console.log("zz correct");
                                     setHistory(prev => ({ ...prev, correct: [...prev.correct, typed] }));
                                 } else {
                                     const show = `${typed} (${words[currWordIdx]})`
-                                    console.log("zz incorrect");
                                     setHistory(prev => ({ ...prev, incorrect: [...prev.incorrect, show] }));
                                 }
                                 setTyped("");
                             }
                         }}
-                        onFocus={() => {setFocus(true); console.log("focused, focus: ", focus)}}
-                        onBlur={() => {setFocus(false); console.log("lost focus, focus: ", focus);}}
+                        onFocus={() => {setFocus(true);}}
+                        onBlur={() =>  {setFocus(false);}}
                     />
                     <p>{chars}</p>
                 </div>
