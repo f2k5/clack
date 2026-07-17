@@ -1,0 +1,41 @@
+.incorrectWordContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.missedCorrectWord {
+    color: #646669;
+}
+
+.headerStatContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.statContainer {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.statSizeBig {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.statSizeName {
+    font-size: 30px;
+}
+
+.lineBreak {
+    border-width: medium;
+    border-style: none;
+    border-color: currentcolor;
+    border-image: none;
+    height: 2px;
+    background-color: grey;
+    margin: 40px 0px;
+}
