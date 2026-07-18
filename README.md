@@ -16,7 +16,7 @@ A typing test app built with React.
 
 ## Features to consider:
 - [ ] Add a "Stop and Reset" button.
-- [ ] Custom message in Results page when 0 in correct words.
+- [ ] Custom message in Results page when 0 incorrect words.
 
 ## Code improvements to make:
 - [ ] Replace useState with more appropriate hooks where re-rendering is not needed.
