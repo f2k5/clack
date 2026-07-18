@@ -11,7 +11,7 @@ A typing test app built with React.
 ## Bugs to fix:
 - [ ] Disable duration buttons when typing is live.
 - [ ] App showing a brief ugly "no focus" text when user changes duration.
-- [ ] Each sentence is 200 words, what if the user (even if hypothetically) that within the duration. This edge case needs to be handled and tested.
+- [ ] Each sentence is 200 words, what if the user (even if hypothetically) finishes that within the duration? This edge case needs to be handled and tested.
 
 ## Code improvements to make:
 - [ ] Replace useState with more appropriate hooks where re-rendering is not needed.
