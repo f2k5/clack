@@ -1,4 +1,4 @@
-# Clack
+# clack
 
 > *his fingers hurt, but he clack, clack, and clacked away*
 
