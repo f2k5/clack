@@ -17,7 +17,6 @@ export default function Type () {
     const [currWordIdx, setCurrWordIdx] = useState(0); //The current word index from words the user is typing
     const [currWord, setCurrWord] = useState(words[currWordIdx]);//The current word from words the user is typing
     const [typed, setTyped] = useState("");//What the user is tying in real time
-    const [typeHistory, setTypeHistory] = useState([]);
     const [currWordGroup10, setCurrWordGroup10] = useState(words.slice(0, NUM_WORDS_TO_SHOW));
     const [duration, setDuration] = useState(TIMER_DURATION);
     const [timer, setTimer] = useState(TIMER_DURATION);
@@ -121,7 +120,6 @@ export default function Type () {
         setCurrWordGroup10(newWords.slice(0, NUM_WORDS_TO_SHOW));
         setCurrWordIdx(0);
         setTyped("");
-        setTypeHistory([]);
         setHistory({ correct: [], incorrect: [] });
         setTestStarted(null);
         setTimer(duration);
@@ -172,7 +170,6 @@ export default function Type () {
                                 setCurrWordGroup10(words.slice(nextWordIdx, nextWordIdx+NUM_WORDS_TO_SHOW));
                                 setCurrWordIdx(nextWordIdx);
                                 setCurrWord(words[nextWordIdx]);
-                                setTypeHistory(prev => [...prev, typed]);
                                 if (typed === words[currWordIdx]) {
                                     setHistory(prev => ({ ...prev, correct: [...prev.correct, typed] }));
                                 } else {
