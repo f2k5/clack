@@ -1,6 +1,7 @@
 import "./Result.css";
 
 export default function Result ({wpm, accuracy, correctWords, incorrectWords, onRestart, duration}) {
+    const noIncorrectMsg = "Damn, damn. No incorrect words!"
     return (
         <div>
             <div className="headerStatContainer">
@@ -35,7 +36,7 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                 </div>
             }
 
-            {incorrectWords.length !== 0 && 
+            {incorrectWords.length !== 0 ?
                 <div className="statSizeName" style={{marginBottom: "50px"}}>
                     Incorrect words:
                     <div className="incorrectWordContainer">
@@ -52,6 +53,8 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                         })}
                     </div>
                 </div>
+                :
+                <div className="statSizeName incorrect">{noIncorrectMsg}</div>
             }
 
             <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
