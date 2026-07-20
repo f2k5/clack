@@ -130,7 +130,7 @@ export default function Type () {
         <div className="page">
             <div className={`header ${testStarted === false ? "hide" : ""}`}>
                 <p className="timeRemaining">{timer}</p>
-                <div className="btnContainer">
+                <div className={`btnContainer ${testStarted === true ? "hide" : ""}`}>
                     <TimerButton 
                         buttonText={15} 
                         buttonSelected={duration === 15 ? true : false} 
