@@ -177,6 +177,9 @@ export default function Type () {
                                     setHistory(prev => ({ ...prev, incorrect: [...prev.incorrect, show] }));
                                 }
                                 setTyped("");
+                            } else if (e.key === "Tab") {
+                                e.preventDefault();
+                                resetTest();
                             }
                         }}
                         onFocus={() => {setFocus(true);}}
