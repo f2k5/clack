@@ -1,22 +1,29 @@
 # clack
 
-> *his fingers hurt, but he clack, clack, and clacked away*
+> *"his fingers hurt, but he clack, clack, and clacked away"*
 
-A typing test app built with React.
+A minimalist, strict typing test app built with React.
 
-## To do:
-- [ ] Update this README.
-- [ ] Add more sentences in wordDB.
-- [ ] Elongate the existing sentences in wordDB.
+### Run locally
+git clone https://github.com/yourusername/clack  
+cd clack  
+npm install  
+npm run dev
 
-## Bugs to fix:
-- [x] Disable duration buttons when typing is live.
-- [ ] App showing a brief ugly "no focus" text when user changes duration.
-- [ ] Each sentence is 200 words, what if the user (even if hypothetically) finishes that within the duration? This edge case needs to be handled and tested.
+---
 
-## Features to consider:
-- [x] Add a "Stop and Reset" button.
-- [x] Custom message in Results page when 0 incorrect words.
+## 🛠️ Roadmap & To-Do
 
-## Code improvements to make:
-- [ ] Replace useState with more appropriate hooks where re-rendering is not needed.
+### Features & Polish
+- [x] Add a "Stop and Reset" button
+- [x] Custom message on Results page for zero-error runs
+- [ ] Add more words/sentences to `wordDB`
+
+### Known Bugs
+- [x] Disable duration buttons while test is active
+- [ ] Fix brief "no focus" flash when switching test duration
+- [ ] Handle infinite word streaming (prevent fast typists from reaching array end)
+
+### Refactoring
+- [ ] Migrate codebase to TypeScript
+- [ ] Audit state: replace unnecessary `useState` hooks with `useRef` to optimize re-renders
