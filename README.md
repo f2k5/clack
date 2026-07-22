@@ -5,7 +5,7 @@
 A minimalist, strict typing test app built with React.
 
 ### Run locally
-git clone https://github.com/yourusername/clack  
+git clone https://github.com/f2k5/clack  
 cd clack  
 npm install  
 npm run dev
