@@ -3,6 +3,7 @@
 > *"his fingers hurt, but he clack, clack, and clacked away"*
 
 A minimalist, strict typing test app built with React.
+![Clack demo](./assets/clack-demo.gif)
 
 ### Run locally
 git clone https://github.com/f2k5/clack  
