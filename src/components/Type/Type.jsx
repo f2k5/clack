@@ -4,9 +4,9 @@ import Result from "../Result/Result";
 import getSentence from "../../wordDB/wordDB";
 import "./Type.css"
 
-const NUM_WORDS_TO_SHOW = 10;
+const NUM_WORDS_TO_SHOW = 20;
 const TIMER_DURATION = 30; //seconds
-const SECOND = 1000;
+const SECOND = 1000; //milliseconds
 
 const UNTYPED   = "#646669";
 const CORRECT   = "#82FF62";
@@ -17,7 +17,7 @@ export default function Type () {
     const [currWordIdx, setCurrWordIdx] = useState(0); //The current word index from words the user is typing
     const [currWord, setCurrWord] = useState(words[currWordIdx]);//The current word from words the user is typing
     const [typed, setTyped] = useState("");//What the user is tying in real time
-    const [currWordGroup10, setCurrWordGroup10] = useState(words.slice(0, NUM_WORDS_TO_SHOW));
+    const [currWordGroup, setCurrWordGroup] = useState(words.slice(0, NUM_WORDS_TO_SHOW));
     const [duration, setDuration] = useState(TIMER_DURATION);
     const [timer, setTimer] = useState(TIMER_DURATION);
     const [testStarted, setTestStarted] = useState(null);
@@ -38,7 +38,7 @@ export default function Type () {
             setTimer(prev => {
                 if (prev <= 1) {
                     clearInterval(interval);
-                    setCurrWordGroup10([]);
+                    setCurrWordGroup([]);
                     setTestStarted(false);
                     return 0;
                 }
@@ -50,7 +50,7 @@ export default function Type () {
     }, [testStarted])
 
     //Loop through all the words
-    currWordGroup10.forEach((word, wordIdx) => {
+    currWordGroup.forEach((word, wordIdx) => {
         const letters = word.split("");
         letters.forEach((letter, letterIdx) => {
             let letterColor = UNTYPED;
@@ -117,7 +117,7 @@ export default function Type () {
         const newWords = getSentence().split(" ");
         setWords(newWords);
         setCurrWord(newWords[0]);
-        setCurrWordGroup10(newWords.slice(0, NUM_WORDS_TO_SHOW));
+        setCurrWordGroup(newWords.slice(0, NUM_WORDS_TO_SHOW));
         setCurrWordIdx(0);
         setTyped("");
         setHistory({ correct: [], incorrect: [] });
@@ -167,7 +167,7 @@ export default function Type () {
                             if (e.key === " ") {
                                 e.preventDefault();
                                 const nextWordIdx = currWordIdx + 1;
-                                setCurrWordGroup10(words.slice(nextWordIdx, nextWordIdx+NUM_WORDS_TO_SHOW));
+                                setCurrWordGroup(words.slice(nextWordIdx, nextWordIdx+NUM_WORDS_TO_SHOW));
                                 setCurrWordIdx(nextWordIdx);
                                 setCurrWord(words[nextWordIdx]);
                                 if (typed === words[currWordIdx]) {
