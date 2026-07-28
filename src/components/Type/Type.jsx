@@ -12,6 +12,14 @@ const UNTYPED   = "#646669";
 const CORRECT   = "#82FF62";
 const INCORRECT = "#CA4754";
 
+const CURR_WORD_LEN = "100px";
+const OTHER_WORDS_LEN = "60px";
+const CURR_WORD_OPACITY = "1";
+const OTHER_WORDS_OPACITY = "0.6";
+
+const START_TYPING_TEXT = "start typing to begin • space to move to the next word";
+const LOST_FOCUS_TEXT = "lost focus, click here to regain focus";
+
 export default function Type () {
     const [words, setWords] = useState(() => getSentence().split(" "));
     const [currWordIdx, setCurrWordIdx] = useState(0); //The current word index from words the user is typing
@@ -66,8 +74,8 @@ export default function Type () {
                     className={wordIdx === 0 ? 'word-focus': ''}
                     style={{
                         color: letterColor,
-                        fontSize: wordIdx === 0 ? "100px" : "60px",
-                        opacity: wordIdx === 0 ? 1 : 0.6,
+                        fontSize: wordIdx === 0 ? CURR_WORD_LEN : OTHER_WORDS_LEN,
+                        opacity: wordIdx === 0 ? CURR_WORD_OPACITY : OTHER_WORDS_OPACITY,
                     }}
                 >
                     {letter}
@@ -87,7 +95,7 @@ export default function Type () {
                             className={wordIdx === 0 ? 'word-focus': ''}
                             style={{
                                 color: INCORRECT,
-                                fontSize: wordIdx === 0 ? "100px" : "60px",
+                                fontSize: wordIdx === 0 ? CURR_WORD_LEN : OTHER_WORDS_LEN,
                             }}
                         >
                             {extraChar}
@@ -128,6 +136,7 @@ export default function Type () {
 
     return (
         <div className="page">
+            <p className={`startTypingText ${focus && currWordIdx === 0 ? "" : "hide"}`}>{START_TYPING_TEXT}</p>
             <div className={`header ${testStarted === false ? "hide" : ""}`}>
                 <p className="timeRemaining">{timer}</p>
                 <div className={`btnContainer ${testStarted === true ? "hide" : ""}`}>
@@ -149,9 +158,7 @@ export default function Type () {
                 </div>
             </div>
 
-            <p className={`lostFocusText incorrect ${focus ? "hide" : ""}`}
-                >lost focus, click here to regain focus
-            </p>
+            <p className={`lostFocusText incorrect ${focus ? "hide" : ""}`}>{LOST_FOCUS_TEXT}</p>
             <div className={`wordsContainer ${focus ? "" : "blur"}`}>
                 <div className="typing-area" onClick={() => inputRef.current.focus()}>
                     <input ref={inputRef}
