@@ -39,3 +39,7 @@
     background-color: grey;
     margin: 40px 0px;
 }
+
+.italicize {
+    font-style: italic;
+}

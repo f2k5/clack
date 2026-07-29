@@ -1,7 +1,8 @@
 import "./Result.css";
 
 export default function Result ({wpm, accuracy, correctWords, incorrectWords, onRestart, duration}) {
-    const noIncorrectMsg = "Damn, damn. No incorrect words!"
+    const NO_INCORRECT_WORDS_MSG = "Damn, damn. No incorrect words!"
+    const SKIPPED_WORD_TEXT = "skipped word";
     return (
         <div>
             <div className="headerStatContainer">
@@ -41,11 +42,18 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                     Incorrect words:
                     <div className="incorrectWordContainer">
                         {incorrectWords.map((word, index) => {
-                            const wrongWord = word.split(" ");
+                            const [typedWord, correctWord] = word.split(" ");
+                            const typedWordToShow = typedWord === "" ? SKIPPED_WORD_TEXT : typedWord;
                             return (
                                 <div>
-                                    <span className="incorrect">{wrongWord[0]}</span>&nbsp;
-                                    <span className="missedCorrectWord">{wrongWord[1]}</span>
+                                    <span 
+                                        className={`incorrect 
+                                            ${typedWordToShow === SKIPPED_WORD_TEXT ? 
+                                                "italicize" : ""}`
+                                    }>
+                                        {typedWordToShow}
+                                    </span>&nbsp;
+                                    <span className="missedCorrectWord">{correctWord}</span>
                                     {index === incorrectWords.length-1 ? 
                                         "" : <span className="missedCorrectWord">,&nbsp;</span>}
                                 </div>
@@ -54,7 +62,7 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                     </div>
                 </div>
                 :
-                <div className="statSizeName incorrect">{noIncorrectMsg}</div>
+                <div className="statSizeName incorrect">{NO_INCORRECT_WORDS_MSG}</div>
             }
 
             <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
