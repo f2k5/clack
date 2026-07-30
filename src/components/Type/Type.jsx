@@ -54,7 +54,10 @@ export default function Type () {
             })
         }, SECOND);
 
-        return () => clearInterval(interval)
+        return () => {
+            clearInterval(interval);
+            setFocus(true);
+        };
     }, [testStarted])
 
     //Loop through all the words
