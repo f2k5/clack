@@ -14,6 +14,9 @@ const sentences = [
   "sphinx of black quartz judge my vow while five boxing wizards jump quickly over sleeping dogs near wooden fence where children gather every autumn picking apples storing them carefully inside barrels lined along stone walls built centuries ago by hands belonging to people whose names weather erased from every record leaving only structures standing silent patient telling stories nobody living remembers anymore yet somehow feeling familiar like distant music heard through walls of old houses late at night when streets empty and city breathes slowly between moments of noise and stillness both equally necessary both equally forgotten by morning when alarm pulls consciousness back into routines carrying coffee crossing thresholds sitting beneath artificial light answering questions solving problems moving pieces around boards nobody designed with purpose just accumulated over decades of small decisions made by tired people doing reasonable things given what they knew then which was never enough but always sufficient to continue forward through seasons marked less by temperature now than deadlines quarterly reviews annual reports measuring everything except what actually mattered which was simply whether people felt their days contained enough meaning to justify waking again tomorrow and most days they did finding small reasons hidden inside ordinary moments shared glances brief kindnesses cups of something warm passed between hands"
 ];
 
-export default function getSentence () {
-    return sentences[Math.floor(Math.random() * sentences.length)];
+export default function getSentence() {
+  const allWords = sentences.join(" ").split(" ");
+  const unique = [...new Set(allWords)];
+  const shuffled = unique.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 240).join(" ");
 }
