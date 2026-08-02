@@ -1,8 +1,21 @@
+import { useEffect } from "react";
 import "./Result.css";
 
 export default function Result ({wpm, accuracy, correctWords, incorrectWords, onRestart, duration}) {
     const NO_INCORRECT_WORDS_MSG = "Damn, damn. No incorrect words!"
     const SKIPPED_WORD_TEXT = "skipped word";
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                onRestart()
+            };
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onRestart]);
+
     return (
         <div>
             <div className="headerStatContainer">
@@ -66,7 +79,7 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
             }
 
             <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <button style={{marginLeft: "0"}} onClick={onRestart}>try again</button>
+                <button style={{marginLeft: "0"}} onClick={onRestart}>click here to try again or hit tab</button>
             </div>
         </div>
     );
