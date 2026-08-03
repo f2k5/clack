@@ -118,9 +118,10 @@ export default function Type () {
     const totalWords = history.correct.length + history.incorrect.length;
     const accuracy = totalWords > 0 ? Math.round((history.correct.length / totalWords) * 100) : 0;
 
-    const handleDurationChange = (duration) => {
-        setDuration(duration);
-        setTimer(duration);
+    const handleDurationChange = (durationSet) => {
+        if (duration === durationSet) return;
+        setDuration(durationSet);
+        setTimer(durationSet);
         setTimeout(() => inputRef.current.focus(), 0);
     }
 
@@ -147,16 +148,19 @@ export default function Type () {
                         buttonText={15} 
                         buttonSelected={duration === 15 ? true : false} 
                         onButtonPress={handleDurationChange}
+                        disableBtn={duration === 15}
                     />
                     <TimerButton 
                         buttonText={30} 
                         buttonSelected={duration === 30 ? true : false} 
                         onButtonPress={handleDurationChange}
+                        disableBtn={duration === 30}
                     />
                     <TimerButton 
                         buttonText={60} 
                         buttonSelected={duration === 60 ? true : false} 
                         onButtonPress={handleDurationChange}
+                        disableBtn={duration === 60}
                     />
                 </div>
             </div>
