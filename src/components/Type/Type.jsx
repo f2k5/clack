@@ -179,6 +179,7 @@ export default function Type () {
                         }}
                         onKeyDown={(e) => {
                             if (e.key === " ") {
+                                !testStarted && setTestStarted(true);
                                 e.preventDefault();
                                 const nextWordIdx = currWordIdx + 1;
                                 setCurrWordGroup(words.slice(nextWordIdx, nextWordIdx+NUM_WORDS_TO_SHOW));
