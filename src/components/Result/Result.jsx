@@ -45,14 +45,24 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
 
             {correctWords.length !== 0 &&
                 <div className="statSizeName" style={{marginBottom: "20px"}}>
-                    Correct words:<br></br>
-                    <span className="correct statSizeName">{correctWords.join(", ")}</span>
+                    correct words:<br></br>
+                    {correctWords.map((element, index) => {
+                        {console.log(element)}
+                        return (
+                            <span 
+                                key={index} 
+                                className="correct statSizeName">
+                                {element}
+                                {index < correctWords.length-1 && <span className="missedCorrectWord">, </span>}
+                            </span>
+                        );
+                    })}
                 </div>
             }
 
             {incorrectWords.length !== 0 ?
                 <div className="statSizeName" style={{marginBottom: "50px"}}>
-                    Incorrect words:
+                    incorrect words:
                     <div className="incorrectWordContainer">
                         {incorrectWords.map((word, index) => {
                             const [typedWord, correctWord] = word.split(" ");
@@ -78,8 +88,8 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                 <div className="statSizeName incorrect">{NO_INCORRECT_WORDS_MSG}</div>
             }
 
-            <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <button style={{marginLeft: "0"}} onClick={onRestart}>click here to try again or hit tab</button>
+            <div className="restartTestCaptionContainer">
+                <button className="restartButton" onClick={onRestart}>click here to try again or hit tab</button>
             </div>
         </div>
     );
