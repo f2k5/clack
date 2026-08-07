@@ -43,3 +43,15 @@
 .italicize {
     font-style: italic;
 }
+
+.restartTestCaptionContainer {
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.restartButton {
+    margin-left: 0;
+}
