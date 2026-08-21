@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import "./Result.css";
 
 export default function Result ({wpm, accuracy, correctWords, incorrectWords, onRestart, duration}) {
-    const NO_INCORRECT_WORDS_MSG = "clean run. not a single mistake"
-    const NO_DATA_MSG = "did you zone out? nothing to show"
+    const NO_INCORRECT_WORDS_MSG = "clean run. not a single mistake";
+    const NO_CORRECT_WORDS_MSG = "yikes. not a single one right"
+    const NO_DATA_MSG = "did you zone out? nothing to show";
     const SKIPPED_WORD_TEXT = "skipped word";
 
     useEffect(() => {
@@ -19,7 +20,11 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
 
     return (
         <div>
-            {correctWords.length !== 0 && incorrectWords.length !== 0 ?
+            {(correctWords.length === 0 && incorrectWords.length === 0) &&
+                <div className="statSizeName incorrect centerText">{NO_DATA_MSG}</div>
+            }
+
+            {(correctWords.length !== 0 || incorrectWords.length !== 0) &&
                 <div>
                     <div className="headerStatContainer">
                         <div className="statContainer">
@@ -45,8 +50,6 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                     </div>
                     <hr className="lineBreak"></hr>
                 </div>
-                :
-                <div className="statSizeName incorrect centerText">{NO_DATA_MSG}</div>
             }
 
             {correctWords.length !== 0 &&
@@ -64,6 +67,10 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                         );
                     })}
                 </div>
+            }
+
+            {(correctWords.length === 0 && incorrectWords.length !== 0) && 
+                <div className="statSizeName incorrect" style={{marginBottom: "20px"}}>{NO_CORRECT_WORDS_MSG}</div>
             }
 
             {incorrectWords.length !== 0 ?
