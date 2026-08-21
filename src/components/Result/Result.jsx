@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import "./Result.css";
 
 export default function Result ({wpm, accuracy, correctWords, incorrectWords, onRestart, duration}) {
-    const NO_INCORRECT_WORDS_MSG = "Damn, damn. No incorrect words!"
+    const NO_INCORRECT_WORDS_MSG = "clean run. not a single mistake"
+    const NO_DATA_MSG = "did you zone out? nothing to show"
     const SKIPPED_WORD_TEXT = "skipped word";
 
     useEffect(() => {
@@ -18,30 +19,35 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
 
     return (
         <div>
-            <div className="headerStatContainer">
-                <div className="statContainer">
-                    <p className="statSizeBig">{wpm}</p>
-                    <p className="missedCorrectWord statSizeName">wpm</p>
+            {correctWords.length !== 0 && incorrectWords.length !== 0 ?
+                <div>
+                    <div className="headerStatContainer">
+                        <div className="statContainer">
+                            <p className="statSizeBig">{wpm}</p>
+                            <p className="missedCorrectWord statSizeName">wpm</p>
+                        </div>
+                        <div className="statContainer">
+                            <p className="statSizeBig">{accuracy}%</p>
+                            <p className="missedCorrectWord statSizeName">accuracy</p>
+                        </div>
+                        <div className="statContainer">
+                            <p className="statSizeBig correct">{correctWords.length}</p>
+                            <p className="missedCorrectWord statSizeName">correct</p>
+                        </div>
+                        <div className="statContainer">
+                            <p className="statSizeBig incorrect">{incorrectWords.length}</p>
+                            <p className="missedCorrectWord statSizeName">incorrect</p>
+                        </div>
+                        <div className="statContainer">
+                            <p className="statSizeBig">{duration}s</p>
+                            <p className="missedCorrectWord statSizeName">duration</p>
+                        </div>
+                    </div>
+                    <hr className="lineBreak"></hr>
                 </div>
-                <div className="statContainer">
-                    <p className="statSizeBig">{accuracy}%</p>
-                    <p className="missedCorrectWord statSizeName">accuracy</p>
-                </div>
-                <div className="statContainer">
-                    <p className="statSizeBig correct">{correctWords.length}</p>
-                    <p className="missedCorrectWord statSizeName">correct</p>
-                </div>
-                <div className="statContainer">
-                    <p className="statSizeBig incorrect">{incorrectWords.length}</p>
-                    <p className="missedCorrectWord statSizeName">incorrect</p>
-                </div>
-                 <div className="statContainer">
-                    <p className="statSizeBig">{duration}s</p>
-                    <p className="missedCorrectWord statSizeName">duration</p>
-                </div>
-            </div>
-
-            <hr className="lineBreak"></hr>
+                :
+                <div className="statSizeName incorrect centerText">{NO_DATA_MSG}</div>
+            }
 
             {correctWords.length !== 0 &&
                 <div className="statSizeName" style={{marginBottom: "20px"}}>
@@ -85,7 +91,7 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                     </div>
                 </div>
                 :
-                <div className="statSizeName incorrect">{NO_INCORRECT_WORDS_MSG}</div>
+                correctWords.length !== 0 && <div className="statSizeName incorrect">{NO_INCORRECT_WORDS_MSG}</div>
             }
 
             <div className="restartTestCaptionContainer">

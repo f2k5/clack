@@ -140,7 +140,7 @@ export default function Type () {
 
     return (
         <div className="page">
-            <p className={`startTypingText ${focus && currWordIdx === 0 ? "" : "hide"}`}>{START_TYPING_TEXT}</p>
+            <p className={`startTypingText ${focus && currWordIdx === 0 && testStarted !== false ? "" : "hide"}`}>{START_TYPING_TEXT}</p>
             <div className={`header ${testStarted === false ? "hide" : ""}`}>
                 <p className="timeRemaining">{timer}</p>
                 <div className={`btnContainer ${testStarted === true ? "hide" : ""}`}>
