@@ -57,7 +57,7 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                     correct words:<br></br>
                     {correctWords.map((element, index) => {
                         return (
-                            <span ƒ
+                            <span 
                                 key={index} 
                                 className="correct statSizeName">
                                 {element}
