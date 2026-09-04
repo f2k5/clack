@@ -56,7 +56,6 @@ export default function Result ({wpm, accuracy, correctWords, incorrectWords, on
                 <div className="statSizeName" style={{marginBottom: "20px"}}>
                     correct words:<br></br>
                     {correctWords.map((element, index) => {
-                        {console.log(element)}
                         return (
                             <span 
                                 key={index} 
