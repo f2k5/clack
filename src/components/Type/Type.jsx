@@ -48,6 +48,7 @@ export default function Type () {
                     clearInterval(interval);
                     setCurrWordGroup([]);
                     setTestStarted(false);
+                    setFocus(true);
                     return 0;
                 }
                 return prev - 1;
@@ -198,7 +199,11 @@ export default function Type () {
                             }
                         }}
                         onFocus={() => {setFocus(true);}}
-                        onBlur={() =>  {setFocus(false);}}
+                        onBlur={() =>  {
+                                if (timer === 0) return;
+                                setFocus(false);
+                            }
+                        }
                     />
                     <p>{chars}</p>
                 </div>
