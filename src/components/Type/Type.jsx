@@ -120,10 +120,14 @@ export default function Type () {
     const accuracy = totalWords > 0 ? Math.round((history.correct.length / totalWords) * 100) : 0;
 
     const handleDurationChange = (durationSet) => {
-        if (duration === durationSet) return;
-        setDuration(durationSet);
-        setTimer(durationSet);
+        if (duration === durationSet) returnž
+        updateDurationAndTimer(durationSet);
         setTimeout(() => inputRef.current.focus(), 0);
+    }
+
+    const updateDurationAndTimer = (duration) => {
+        setDuration(duration);
+        setTimer(duration);
     }
 
     const resetTest = () => {
@@ -196,6 +200,14 @@ export default function Type () {
                             } else if (e.key === "Tab") {
                                 e.preventDefault();
                                 resetTest();
+                            } else if (e.key === "ArrowLeft" && !testStarted) {
+                                if (duration === 15) return;
+                                else if (duration === 30) updateDurationAndTimer(15);
+                                else if (duration === 60) updateDurationAndTimer (30);
+                            } else if (e.key === "ArrowRight" && !testStarted) {
+                                if (duration === 60) return;
+                                else if (duration === 15) updateDurationAndTimer(30); 
+                                else if (duration === 30) updateDurationAndTimer(60);
                             }
                         }}
                         onFocus={() => {setFocus(true);}}
