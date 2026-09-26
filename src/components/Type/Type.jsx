@@ -130,6 +130,18 @@ export default function Type () {
         setTimer(duration);
     }
 
+    const handleLRArrowKeys = (keyPressed) => {
+        if (keyPressed === "ArrowLeft") {
+            if (duration === 15) updateDurationAndTimer(60);
+            if (duration === 30) updateDurationAndTimer(15);
+            if (duration === 60) updateDurationAndTimer(30);
+        } else {
+            if (duration === 15) updateDurationAndTimer(30);
+            if (duration === 30) updateDurationAndTimer(60);
+            if (duration === 60) updateDurationAndTimer(15);
+        }
+    }
+
     const resetTest = () => {
         const newWords = getSentence().split(" ");
         setWords(newWords);
@@ -200,14 +212,8 @@ export default function Type () {
                             } else if (e.key === "Tab") {
                                 e.preventDefault();
                                 resetTest();
-                            } else if (e.key === "ArrowLeft" && !testStarted) {
-                                if (duration === 15) return;
-                                else if (duration === 30) updateDurationAndTimer(15);
-                                else if (duration === 60) updateDurationAndTimer (30);
-                            } else if (e.key === "ArrowRight" && !testStarted) {
-                                if (duration === 60) return;
-                                else if (duration === 15) updateDurationAndTimer(30); 
-                                else if (duration === 30) updateDurationAndTimer(60);
+                            } else if ((e.key === "ArrowLeft" || e.key === "ArrowRight") && !testStarted) {
+                                handleLRArrowKeys(e.key);
                             }
                         }}
                         onFocus={() => {setFocus(true);}}
