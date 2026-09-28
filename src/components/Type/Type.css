@@ -91,14 +91,23 @@ input {
 
 .btnContainer {
   display: flex;
-  justify-content: right;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.btnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .header {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .timeRemaining {

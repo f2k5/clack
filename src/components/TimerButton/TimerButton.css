@@ -2,7 +2,7 @@ button {
     font-family: 'JetBrains Mono', monospace;
     color: #646669;
     height: 40px;
-    padding: 10px 20px;
+    padding: 10px 0 10px 20px;
     border: none;
     margin-left: 20px;
     font-size: 20px;

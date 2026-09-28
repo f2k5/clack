@@ -161,24 +161,27 @@ export default function Type () {
             <div className={`header ${testStarted === false ? "hide" : ""}`}>
                 <p className="timeRemaining">{timer}</p>
                 <div className={`btnContainer ${testStarted === true ? "hide" : ""}`}>
-                    <TimerButton 
-                        buttonText={15} 
-                        buttonSelected={duration === 15 ? true : false} 
-                        onButtonPress={handleDurationChange}
-                        disableBtn={duration === 15}
-                    />
-                    <TimerButton 
-                        buttonText={30} 
-                        buttonSelected={duration === 30 ? true : false} 
-                        onButtonPress={handleDurationChange}
-                        disableBtn={duration === 30}
-                    />
-                    <TimerButton 
-                        buttonText={60} 
-                        buttonSelected={duration === 60 ? true : false} 
-                        onButtonPress={handleDurationChange}
-                        disableBtn={duration === 60}
-                    />
+                    <div className="btnWrapper">
+                        <TimerButton 
+                            buttonText={15} 
+                            buttonSelected={duration === 15 ? true : false} 
+                            onButtonPress={handleDurationChange}
+                            disableBtn={duration === 15}
+                        />
+                        <TimerButton 
+                            buttonText={30} 
+                            buttonSelected={duration === 30 ? true : false} 
+                            onButtonPress={handleDurationChange}
+                            disableBtn={duration === 30}
+                        />
+                        <TimerButton
+                            buttonText={60} 
+                            buttonSelected={duration === 60 ? true : false} 
+                            onButtonPress={handleDurationChange}
+                            disableBtn={duration === 60}
+                        />
+                    </div>
+                    <p>L/R arrow keys or click to change</p>
                 </div>
             </div>
 
