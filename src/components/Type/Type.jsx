@@ -75,7 +75,7 @@ export default function Type () {
             chars.push(
                 <span 
                     key={crypto.randomUUID()}
-                    className={wordIdx === 0 ? 'word-focus': ''}
+                    className={wordIdx === 0 && testStarted ? 'word-focus': ''}
                     style={{
                         color: letterColor,
                         fontSize: wordIdx === 0 ? CURR_WORD_LEN : OTHER_WORDS_LEN,
